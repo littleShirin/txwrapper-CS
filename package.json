@@ -1,0 +1,35 @@
+{
+  "name": "@substrate/txwrapper-cs",
+  "version": "1.1.1",
+  "author": "Shirin Davis",
+  "description": "Helper functions for Crown Sterling offline transaction generation.",
+  "files": [
+    "lib"
+  ],
+  "license": "Apache-2.0",
+  "main": "lib/index.js",
+  "private": false,
+  "repository": "https://github.com/littleShirin/txwrapper-cs.git",
+  "bugs": "https://github.com/littleShirin/txwrapper-cs.git",
+  "homepage": "https://github.com/littleShirin/txwrapper-cs.git",
+  "engine": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node lib/sovereinchainExample"
+  },
+  "dependencies": {
+    "@substrate/txwrapper-core": "^1.1.1",
+    "@substrate/txwrapper-polkadot": "^1.1.1",
+    "@substrate/txwrapper-registry": "^1.1.1",
+    "@substrate/txwrapper-substrate": "^1.1.1"
+  },
+  "devDependencies": {
+    "ts-node": "9.1.1",
+    "typescript": "4.1.5"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
