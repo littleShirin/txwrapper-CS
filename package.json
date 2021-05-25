@@ -1,6 +1,6 @@
 {
-  "name": "@substrate/txwrapper-cs",
-  "version": "1.0.0",
+  "name": "@substrate/txwrapper-crown-sterling",
+  "version": "1.1.1",
   "author": "Shirin Davis",
   "description": "Helper functions for Crown Sterling offline transaction generation.",
   "files": [
@@ -8,6 +8,7 @@
   ],
   "license": "Apache-2.0",
   "main": "lib/index.js",
+  "bin": "lib/index.js",
   "private": false,
   "repository": "https://github.com/littleShirin/txwrapper-cs.git",
   "bugs": "https://github.com/littleShirin/txwrapper-cs.git",
@@ -35,6 +36,7 @@
     "typescript": "4.1.5"
   },
   "publishConfig": {
+    "cache": "~/.npm",
     "access": "public"
   }
 }
