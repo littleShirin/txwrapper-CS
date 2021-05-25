@@ -23,7 +23,7 @@
      return fetch('http://localhost:9933', {
          body: JSON.stringify({
              id: 1,
-             jsonrpc: '2.0',
+             jsonrpc: '2.0', 
              method,
              params,
          }),

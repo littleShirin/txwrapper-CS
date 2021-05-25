@@ -11,7 +11,7 @@ export * from '@substrate/txwrapper-core';
  * by `system_properties` call, but since they don't change much, it's pretty safe to hardcode them.
  */
 declare const KNOWN_CHAIN_PROPERTIES: {
-    SovereinChain: {
+    developent: {
         ss58Format: number;
         tokenDecimals: number;
         tokenSymbol: string;

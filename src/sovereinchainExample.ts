@@ -23,7 +23,7 @@ async function main(): Promise<void> {
 	const alice = keyring.addFromUri('//Alice', { name: 'Alice' }, 'sr25519');
 	console.log(
 		"Alice's SS58-Encoded Address:",
-		deriveAddress(alice.publicKey, 42) // TODO, use correct prefix
+		deriveAddress(alice.publicKey, 42) 
 	);
 
 	// To construct the tx, we need some up-to-date information from the node.
@@ -36,27 +36,26 @@ async function main(): Promise<void> {
 	const { specVersion, transactionVersion, specName } = await rpcToLocalNode(
 		'state_getRuntimeVersion'
 	);
-
+console.log('block', blockHash);
 	// Create SovereinChain type registry.
 	const registry = getRegistry({
-		chainName: 'development',
+		chainName: 'developent',
 		specName,
 		specVersion,
 		metadataRpc,
 	});
-
+const dest = '5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty';
 	// Now we can create our `balances.transfer` unsigned tx. The following
 	// function takes the above data as arguments, so can be performed offline
 	// if desired.
-	// TODO In this example we use the `transfer` method; feel free to pick a
-	// different method that illustrates using your chain.
+	
 	const unsigned = methods.balances.transfer(
 		{
-			value: '11',
-			dest: '5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty', // Bob
+			value: '12',
+			dest: dest, // Bob
 		},
 		{
-			address: deriveAddress(alice.publicKey, 42), // TODO, use correct prefix
+			address: deriveAddress(alice.publicKey, 42), 
 			blockHash,
 			blockNumber: registry
 				.createType('BlockNumber', block.header.number)
@@ -64,7 +63,7 @@ async function main(): Promise<void> {
 			eraPeriod: 64,
 			genesisHash,
 			metadataRpc,
-			nonce: 0, // Assuming this is Alice's first tx on the chain
+			nonce: 4, // Assuming this is Alice's first tx on the chain (otherwise ++)
 			specVersion,
 			tip: 0,
 			transactionVersion,
@@ -75,14 +74,16 @@ async function main(): Promise<void> {
 		}
 	);
 
+    console.log('dest', dest)
 	// Decode an unsigned transaction.
 	const decodedUnsigned = decode(unsigned, {
 		metadataRpc,
 		registry,
 	});
+    
 	console.log(
 		// Decoding the transfer amount
-		`\nDecoded Transaction\n  To: ${decodedUnsigned.method.args.dest}\n` +
+		`\nDecoded Transaction\n  To: ${dest}\n` +
 			`  Amount: ${decodedUnsigned.method.args.value}`
 	);
 
@@ -97,7 +98,7 @@ async function main(): Promise<void> {
 	});
 	console.log(
 		 // Decoded transaction of the transfer and providing the tx information
-		`\nDecoded Transaction\n  To: ${payloadInfo.method.args.dest}\n` +
+		`\nDecoded Transaction\n  To: ${dest}\n` +
 			`  Amount: ${payloadInfo.method.args.value}`
 	);
 
@@ -132,7 +133,7 @@ async function main(): Promise<void> {
 	});
 	console.log(
 		// Decoded transaction of the transfer and providing the tx information
-		`\nDecoded Transaction\n  To: ${txInfo.method.args.dest}\n` +
+		`\nDecoded Transaction\n  To: ${dest}\n` +
 			`  Amount: ${txInfo.method.args.value}\n`
 	);
 }

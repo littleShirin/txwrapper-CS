@@ -28,8 +28,8 @@ export * from '@substrate/txwrapper-core';
  * by `system_properties` call, but since they don't change much, it's pretty safe to hardcode them.
  */
 const KNOWN_CHAIN_PROPERTIES = {
-	SovereinChain: {
-	  ss58Format: 0,
+	developent: {
+	  ss58Format: 42,
 	  tokenDecimals: 10,
 	  tokenSymbol: 'CSOV',
 	}
